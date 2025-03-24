@@ -21,10 +21,7 @@
     }
   ],
   "env": {
-    "NODE_ENV": "production",
-    "MONGODB_URI": "@mongodb-uri",
-    "JWT_SECRET": "@jwt-secret",
-    "APP_ORIGIN": "@app-origin"
+    "NODE_ENV": "production"
   },
   "buildCommand": "yarn build"
 } 
