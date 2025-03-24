@@ -14,7 +14,7 @@
     "test": "wsrun -m test",
     "dev:apps": "node_modules/.bin/wsrun -p 'back-end' -p 'front-end' -p 'shared' -c dev",
     "dev": ". $(cd packages/stats && poetry env info --path)/bin/activate && yarn dev:apps",
-    "build:deps": "node_modules/.bin/wsrun -p '@growthbook/growthbook' -p '@growthbook/growthbook-react' -p 'shared' -t -c build",
+    "build:deps": "node_modules/.bin/wsrun -p '@growpulse/growpulse' -p '@growpulse/growpulse-react' -p 'shared' -t -c build",
     "build:app": "node_modules/.bin/wsrun -p 'back-end' -p 'front-end' -c build",
     "build": "yarn build:deps && yarn build:app",
     "start": "wsrun -p 'back-end' -p 'front-end' --no-prefix -c start",
@@ -27,14 +27,15 @@
     "ci": "yarn lint:ci && yarn run type-check && yarn run test",
     "postinstall": "patch-package",
     "generate-sdk-report": "yarn workspace shared generate-sdk-report",
-    "bump-sdk-version": "yarn workspace @growthbook/growthbook bump-version"
+    "bump-sdk-version": "yarn workspace @growpulse/growpulse bump-version"
   },
   "workspaces": [
     "packages/*"
   ],
   "dependencies": {
+    "@growpulse/growpulse": "file:packages/sdk-js",
+    "@growpulse/growpulse-react": "file:packages/sdk-react",
     "@supabase/supabase-js": "^2.49.3",
-    "growthbook": "^0.2.1",
     "mongodb": "^6.15.0",
     "patch-package": "^8.0.0",
     "wsrun": "^5.2.4"
