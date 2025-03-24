@@ -1,5 +1,5 @@
 {
-  "name": "@growthbook/growthbook",
+  "name": "@growpulse/growpulse",
   "version": "1.4.1",
   "license": "MIT",
   "main": "dist/cjs/index.js",
