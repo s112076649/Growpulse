@@ -198,3 +198,7 @@ View the `LICENSE` file in this repository for the full text and details.
 ## 开发者
 
 这个演示是使用CSS变量创建的，便于主题定制。如需修改设计系统，请编辑HTML文件开头的`:root`部分。
+
+## Vercel部署
+
+本项目已配置为在Vercel上部署。更新于 2024年07月22日。
