@@ -39,7 +39,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/growthbook/growthbook",
+    "url": "https://github.com/s112076649/Growpulse",
     "directory": "packages/sdk-js"
   },
   "scripts": {
