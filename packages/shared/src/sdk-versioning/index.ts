@@ -3,7 +3,7 @@ import {
   SDKLanguage,
 } from "back-end/types/sdk-connection";
 import uniq from "lodash/uniq";
-import { paddedVersionString } from "@growthbook/growthbook";
+import { paddedVersionString } from "@growpulse/growpulse";
 import { CapabilityStrategy, SDKCapability } from "./types";
 
 import * as nocode_json from "./sdk-versions/nocode.json";

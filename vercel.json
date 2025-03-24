@@ -1,20 +1,18 @@
 {
   "name": "growpulse",
   "version": 2,
-  "builds": [
-    {
-      "src": "packages/front-end/package.json",
-      "use": "@vercel/node"
+  "framework": "nextjs",
+  "build": {
+    "env": {
+      "SUPABASE_URL": "https://qsptolcekvocotsetrnn.supabase.co",
+      "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFzcHRvbGNla3ZvY290c2V0cm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4NTc0NzksImV4cCI6MjA1ODQzMzQ3OX0.h_KplOiZ6HIKgcQD_TI0cPchRDCtFmRg7js0QjokweE",
+      "NODE_ENV": "production"
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/packages/front-end/$1"
-    }
-  ],
+  },
+  "buildCommand": "cd packages/front-end && yarn install && yarn build",
+  "outputDirectory": "packages/front-end/.next",
+  "devCommand": "cd packages/front-end && yarn dev",
   "env": {
-    "MONGODB_URI": "mongodb://localhost:27017",
     "SUPABASE_URL": "https://qsptolcekvocotsetrnn.supabase.co",
     "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFzcHRvbGNla3ZvY290c2V0cm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4NTc0NzksImV4cCI6MjA1ODQzMzQ3OX0.h_KplOiZ6HIKgcQD_TI0cPchRDCtFmRg7js0QjokweE",
     "NODE_ENV": "production"

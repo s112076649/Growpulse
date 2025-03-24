@@ -14,7 +14,7 @@ import {
 } from "back-end/types/feature";
 import { ExperimentInterfaceStringDates } from "back-end/types/experiment";
 import { FeatureRevisionInterface } from "back-end/types/feature-revision";
-import { evalCondition } from "@growthbook/growthbook";
+import { evalCondition } from "@growpulse/growpulse";
 import {
   OrganizationSettings,
   RequireReview,

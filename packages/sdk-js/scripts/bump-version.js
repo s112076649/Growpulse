@@ -48,7 +48,7 @@ fs.writeFileSync(
 // Bump version in back-end package.json
 console.log("Bumping dependency in packages/back-end/package.json");
 const backendPackageJson = require("../../back-end/package.json");
-backendPackageJson.dependencies["@growthbook/growthbook"] = `^${newVersion}`;
+backendPackageJson.dependencies["@growpulse/growpulse"] = `^${newVersion}`;
 fs.writeFileSync(
   path.resolve(__dirname, "../../back-end/package.json"),
   JSON.stringify(backendPackageJson, null, 2) + "\n"
@@ -57,7 +57,7 @@ fs.writeFileSync(
 // Bump version in shared package.json
 console.log("Bumping dependency in packages/shared/package.json");
 const sharedPackageJson = require("../../shared/package.json");
-sharedPackageJson.dependencies["@growthbook/growthbook"] = `^${newVersion}`;
+sharedPackageJson.dependencies["@growpulse/growpulse"] = `^${newVersion}`;
 fs.writeFileSync(
   path.resolve(__dirname, "../../shared/package.json"),
   JSON.stringify(sharedPackageJson, null, 2) + "\n"
@@ -69,7 +69,7 @@ console.log(
 );
 const sdkReactPackageJson = require("../../sdk-react/package.json");
 sdkReactPackageJson.version = newVersion;
-sdkReactPackageJson.dependencies["@growthbook/growthbook"] = `^${newVersion}`;
+sdkReactPackageJson.dependencies["@growpulse/growpulse"] = `^${newVersion}`;
 fs.writeFileSync(
   path.resolve(__dirname, "../../sdk-react/package.json"),
   JSON.stringify(sdkReactPackageJson, null, 2) + "\n"
@@ -79,7 +79,7 @@ fs.writeFileSync(
 console.log("Bumping dependency in packages/front-end/package.json");
 const frontendPackageJson = require("../../front-end/package.json");
 frontendPackageJson.dependencies[
-  "@growthbook/growthbook-react"
+  "@growpulse/growpulse-react"
 ] = `^${newVersion}`;
 fs.writeFileSync(
   path.resolve(__dirname, "../../front-end/package.json"),
@@ -89,7 +89,7 @@ fs.writeFileSync(
 // Update resolution in top-level package.json
 console.log("Updating resolution in top-level package.json");
 const topLevelPackageJson = require("../../../package.json");
-topLevelPackageJson.resolutions["@growthbook/growthbook"] = newVersion;
+topLevelPackageJson.resolutions["@growpulse/growpulse"] = newVersion;
 fs.writeFileSync(
   path.resolve(__dirname, "../../../package.json"),
   JSON.stringify(topLevelPackageJson, null, 2) + "\n"

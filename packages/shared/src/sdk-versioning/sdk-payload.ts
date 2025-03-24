@@ -4,7 +4,7 @@ import {
 } from "back-end/types/api";
 import { pick, omit } from "lodash";
 import cloneDeep from "lodash/cloneDeep";
-import { getAutoExperimentChangeType } from "@growthbook/growthbook";
+import { getAutoExperimentChangeType } from "@growpulse/growpulse";
 import { OrganizationInterface } from "back-end/types/organization";
 import { SavedGroupsValues, SavedGroupInterface } from "../types";
 import {

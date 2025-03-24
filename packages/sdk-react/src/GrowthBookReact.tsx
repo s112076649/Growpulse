@@ -8,8 +8,8 @@ import type {
   FeatureDefinition,
   Context,
   WidenPrimitives,
-} from "@growthbook/growthbook";
-import { GrowthBook } from "@growthbook/growthbook";
+} from "@growpulse/growpulse";
+import { GrowthBook } from "@growpulse/growpulse";
 
 export type GrowthBookContextValue = {
   growthbook: GrowthBook;
