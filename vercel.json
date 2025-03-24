@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "packages/front-end/package.json",
+      "use": "@vercel/next"
+    },
+    {
+      "src": "packages/back-end/dist/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "packages/back-end/dist/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "packages/front-end/$1"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "MONGODB_URI": "@mongodb-uri",
+    "JWT_SECRET": "@jwt-secret",
+    "APP_ORIGIN": "@app-origin"
+  },
+  "buildCommand": "yarn build"
+} 

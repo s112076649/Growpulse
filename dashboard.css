@@ -1,0 +1,661 @@
+/**
+ * GrowPulse仪表盘样式
+ * 使用GrowPulse设计系统的CSS变量，布局参考GrowthBook
+ */
+
+/* 全局样式 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: var(--background-light);
+  color: var(--text-primary);
+}
+
+/* 主布局 */
+.gp-dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* 侧边栏样式 */
+.gp-sidebar {
+  width: 240px;
+  background-color: var(--white);
+  border-right: 1px solid var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  z-index: 10;
+}
+
+.gp-sidebar-header {
+  padding: var(--spacing-4);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.gp-logo {
+  height: 40px;
+  width: auto;
+}
+
+.gp-nav {
+  flex: 1;
+  padding: var(--spacing-4) 0;
+  overflow-y: auto;
+}
+
+.gp-nav-list {
+  list-style: none;
+}
+
+.gp-nav-item {
+  margin-bottom: var(--spacing-1);
+}
+
+.gp-nav-item a {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-3) var(--spacing-4);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: var(--transition-default);
+  border-left: 3px solid transparent;
+}
+
+.gp-nav-item a:hover {
+  background-color: var(--primary-50);
+  color: var(--primary-600);
+}
+
+.gp-nav-item.active a {
+  color: var(--primary-600);
+  background-color: var(--primary-50);
+  border-left: 3px solid var(--primary-600);
+  font-weight: var(--font-weight-medium);
+}
+
+.gp-icon {
+  margin-right: var(--spacing-3);
+  font-size: var(--font-size-lg);
+}
+
+.gp-sidebar-footer {
+  padding: var(--spacing-4);
+  border-top: 1px solid var(--gray-100);
+}
+
+.gp-user-info {
+  display: flex;
+  align-items: center;
+}
+
+.gp-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: var(--spacing-2);
+}
+
+.gp-username {
+  font-weight: var(--font-weight-medium);
+}
+
+/* 主内容区样式 */
+.gp-main {
+  flex: 1;
+  margin-left: 240px;
+  padding: var(--spacing-6);
+  background-color: var(--background-light);
+}
+
+/* 头部样式 */
+.gp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-6);
+}
+
+.gp-page-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.gp-header-right {
+  display: flex;
+  align-items: center;
+}
+
+.gp-search-box {
+  position: relative;
+  margin-right: var(--spacing-4);
+}
+
+.gp-search-input {
+  padding: var(--spacing-2) var(--spacing-3);
+  padding-right: var(--spacing-8);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  width: 240px;
+  transition: var(--transition-default);
+}
+
+.gp-search-input:focus {
+  outline: none;
+  border-color: var(--primary-400);
+  box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+.gp-search-button {
+  position: absolute;
+  right: var(--spacing-2);
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-md);
+}
+
+.gp-action-buttons {
+  display: flex;
+  gap: var(--spacing-3);
+}
+
+/* 按钮样式 */
+.gp-button {
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: var(--transition-default);
+  border: none;
+}
+
+.gp-button-primary {
+  background-color: var(--primary-600);
+  color: var(--white);
+}
+
+.gp-button-primary:hover {
+  background-color: var(--primary-700);
+}
+
+.gp-button-secondary {
+  background-color: var(--white);
+  color: var(--primary-600);
+  border: 1px solid var(--primary-600);
+}
+
+.gp-button-secondary:hover {
+  background-color: var(--primary-50);
+}
+
+.gp-button-small {
+  padding: var(--spacing-1) var(--spacing-3);
+  font-size: var(--font-size-xs);
+}
+
+.gp-button-icon {
+  padding: var(--spacing-1);
+  font-size: var(--font-size-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--gray-600);
+}
+
+.gp-button-icon:hover {
+  color: var(--primary-600);
+  background-color: var(--gray-100);
+}
+
+.gp-button-page {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  background-color: var(--white);
+  border: 1px solid var(--gray-200);
+}
+
+.gp-button-page.active {
+  background-color: var(--primary-600);
+  color: var(--white);
+  border-color: var(--primary-600);
+}
+
+/* 内容区域样式 */
+.gp-content {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-6);
+}
+
+/* 卡片样式 */
+.gp-card {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--spacing-6);
+  overflow: hidden;
+}
+
+.gp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-4) var(--spacing-6);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.gp-card-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.gp-card-actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.gp-card-content {
+  padding: var(--spacing-6);
+}
+
+/* 仪表盘网格 */
+.gp-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-6);
+}
+
+/* 统计项样式 */
+.gp-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+}
+
+.gp-stat-item {
+  padding: var(--spacing-4);
+  background-color: var(--gray-50);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.gp-stat-value {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-600);
+  margin-bottom: var(--spacing-1);
+}
+
+.gp-stat-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+/* 实验列表 */
+.gp-experiment-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.gp-experiment-item {
+  padding: var(--spacing-4);
+  border-radius: var(--radius-md);
+  border-left: 4px solid transparent;
+}
+
+.gp-experiment-item.gp-success {
+  background-color: var(--success-50);
+  border-left-color: var(--success-500);
+}
+
+.gp-experiment-item.gp-neutral {
+  background-color: var(--gray-50);
+  border-left-color: var(--gray-400);
+}
+
+.gp-experiment-item.gp-danger {
+  background-color: var(--danger-50);
+  border-left-color: var(--danger-500);
+}
+
+.gp-experiment-title {
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-1);
+}
+
+.gp-experiment-metric {
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-1);
+}
+
+.gp-experiment-status {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+/* 活动列表 */
+.gp-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.gp-activity-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+.gp-activity-avatar {
+  margin-right: var(--spacing-3);
+}
+
+.gp-activity-avatar img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.gp-activity-user {
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-1);
+}
+
+.gp-activity-action {
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-1);
+}
+
+.gp-activity-time {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+/* 实验标签页 */
+.gp-experiments {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.gp-filters {
+  display: flex;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.gp-filter-group {
+  display: flex;
+  align-items: center;
+}
+
+.gp-filter-label {
+  margin-right: var(--spacing-2);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.gp-select {
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  background-color: var(--white);
+  font-size: var(--font-size-sm);
+}
+
+/* 表格样式 */
+.gp-table-container {
+  overflow-x: auto;
+}
+
+.gp-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.gp-table th {
+  text-align: left;
+  padding: var(--spacing-3) var(--spacing-4);
+  font-weight: var(--font-weight-semibold);
+  border-bottom: 2px solid var(--gray-100);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.gp-table td {
+  padding: var(--spacing-3) var(--spacing-4);
+  border-bottom: 1px solid var(--gray-100);
+  font-size: var(--font-size-sm);
+}
+
+.gp-table tr:hover {
+  background-color: var(--gray-50);
+}
+
+.gp-experiment-name {
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-1);
+}
+
+.gp-experiment-description {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.gp-badge {
+  display: inline-block;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.gp-badge-success {
+  background-color: var(--success-100);
+  color: var(--success-800);
+}
+
+.gp-badge-neutral {
+  background-color: var(--gray-100);
+  color: var(--gray-800);
+}
+
+.gp-tag {
+  display: inline-block;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  background-color: var(--gray-100);
+  color: var(--text-secondary);
+  margin-right: var(--spacing-1);
+}
+
+.gp-result-indicator {
+  display: inline-block;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+}
+
+.gp-positive {
+  color: var(--success-600);
+}
+
+.gp-neutral {
+  color: var(--gray-600);
+}
+
+.gp-negative {
+  color: var(--danger-600);
+}
+
+.gp-actions {
+  display: flex;
+  gap: var(--spacing-1);
+}
+
+/* 分页 */
+.gp-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--spacing-6);
+}
+
+.gp-page-numbers {
+  display: flex;
+  gap: var(--spacing-1);
+  margin: 0 var(--spacing-2);
+}
+
+/* 特性标志样式 */
+.gp-feature-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.gp-feature-item {
+  padding: var(--spacing-4) var(--spacing-6);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.gp-feature-item:last-child {
+  border-bottom: none;
+}
+
+.gp-feature-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-2);
+}
+
+.gp-feature-name {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-md);
+}
+
+.gp-toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.gp-toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.gp-toggle-label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--gray-300);
+  transition: .4s;
+  border-radius: var(--radius-full);
+}
+
+.gp-toggle-label:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.gp-toggle-input:checked + .gp-toggle-label {
+  background-color: var(--primary-600);
+}
+
+.gp-toggle-input:checked + .gp-toggle-label:before {
+  transform: translateX(26px);
+}
+
+.gp-feature-description {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-2);
+}
+
+.gp-feature-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.gp-meta-info {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .gp-sidebar {
+    width: 60px;
+  }
+  
+  .gp-nav-text {
+    display: none;
+  }
+  
+  .gp-main {
+    margin-left: 60px;
+  }
+  
+  .gp-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .gp-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .gp-header-left, .gp-header-right {
+    width: 100%;
+    margin-bottom: var(--spacing-3);
+  }
+  
+  .gp-search-box {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: var(--spacing-3);
+  }
+  
+  .gp-search-input {
+    width: 100%;
+  }
+  
+  .gp-action-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+} 

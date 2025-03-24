@@ -1,0 +1,133 @@
+/**
+ * GrowPulse设计系统 - CSS变量
+ * 这些变量可以全局使用，确保设计一致性
+ */
+
+:root {
+  /* 颜色系统 - 主色 */
+  --primary-50: #F4F1FB;
+  --primary-100: #E9E3F7;
+  --primary-200: #D3C6EF;
+  --primary-300: #BEA9E7;
+  --primary-400: #A88DDF;
+  --primary-500: #8F6CD7;
+  --primary-600: #6A44CC;
+  --primary-700: #5637AA;
+  --primary-800: #422A88;
+  --primary-900: #2F1D66;
+
+  /* 颜色系统 - 成功色 */
+  --success-50: #E7F7F2;
+  --success-100: #D0F0E6;
+  --success-200: #A1E1CD;
+  --success-300: #72D2B4;
+  --success-400: #46C89A;
+  --success-500: #35AE82;
+  --success-600: #2B9069;
+  --success-700: #227251;
+  --success-800: #185438;
+  --success-900: #0E3621;
+
+  /* 颜色系统 - 危险色 */
+  --danger-50: #FFEFEC;
+  --danger-100: #FFDED9;
+  --danger-200: #FFBDB3;
+  --danger-300: #FF9C8D;
+  --danger-400: #FF7C68;
+  --danger-500: #FF5A35;
+  --danger-600: #E53A14;
+  --danger-700: #C22F10;
+  --danger-800: #9F250C;
+  --danger-900: #7D1C08;
+
+  /* 颜色系统 - 信息色 */
+  --info-50: #EEF6FF;
+  --info-100: #DCEEFF;
+  --info-200: #B9DDFF;
+  --info-300: #96CBFF;
+  --info-400: #72AAFF;
+  --info-500: #368BFF;
+  --info-600: #0069FF;
+  --info-700: #0055D4;
+  --info-800: #0041A3;
+  --info-900: #002D73;
+
+  /* 颜色系统 - 灰色 */
+  --gray-50: #F8F9FD;
+  --gray-100: #E1E4ED;
+  --gray-200: #C4C8D4;
+  --gray-300: #A8ADBB;
+  --gray-400: #8B91A1;
+  --gray-500: #71767F;
+  --gray-600: #585C64;
+  --gray-700: #3F4249;
+  --gray-800: #2C3039;
+  --gray-900: #15171C;
+
+  /* 颜色系统 - 基础色 */
+  --white: #FFFFFF;
+  --black: #000000;
+  
+  /* 语义颜色 */
+  --background-light: var(--gray-50);
+  --background-dark: var(--gray-800);
+  --text-primary: var(--gray-800);
+  --text-secondary: var(--gray-500);
+  --text-disabled: var(--gray-300);
+  --border-color: var(--gray-100);
+
+  /* 间距系统 */
+  --spacing-0: 0;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+
+  /* 边框圆角 */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+
+  /* 字体系统 */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  
+  /* 字体大小 */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 36px;
+  --font-size-5xl: 48px;
+
+  /* 字体粗细 */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-none: none;
+} 

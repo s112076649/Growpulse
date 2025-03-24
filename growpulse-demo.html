@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrowPulse仪表盘演示</title>
+  <style>
+    /* CSS变量 */
+    :root {
+      /* 颜色系统 - 主色 */
+      --primary-50: #F4F1FB;
+      --primary-100: #E9E3F7;
+      --primary-200: #D3C6EF;
+      --primary-300: #BEA9E7;
+      --primary-400: #A88DDF;
+      --primary-500: #8F6CD7;
+      --primary-600: #6A44CC;
+      --primary-700: #5637AA;
+      --primary-800: #422A88;
+      --primary-900: #2F1D66;
+    
+      /* 颜色系统 - 成功色 */
+      --success-50: #E7F7F2;
+      --success-100: #D0F0E6;
+      --success-200: #A1E1CD;
+      --success-300: #72D2B4;
+      --success-400: #46C89A;
+      --success-500: #35AE82;
+      --success-600: #2B9069;
+      --success-700: #227251;
+      --success-800: #185438;
+      --success-900: #0E3621;
+    
+      /* 颜色系统 - 危险色 */
+      --danger-50: #FFEFEC;
+      --danger-100: #FFDED9;
+      --danger-200: #FFBDB3;
+      --danger-300: #FF9C8D;
+      --danger-400: #FF7C68;
+      --danger-500: #FF5A35;
+      --danger-600: #E53A14;
+      --danger-700: #C22F10;
+      --danger-800: #9F250C;
+      --danger-900: #7D1C08;
+    
+      /* 颜色系统 - 信息色 */
+      --info-50: #EEF6FF;
+      --info-100: #DCEEFF;
+      --info-200: #B9DDFF;
+      --info-300: #96CBFF;
+      --info-400: #72AAFF;
+      --info-500: #368BFF;
+      --info-600: #0069FF;
+      --info-700: #0055D4;
+      --info-800: #0041A3;
+      --info-900: #002D73;
+    
+      /* 颜色系统 - 灰色 */
+      --gray-50: #F8F9FD;
+      --gray-100: #E1E4ED;
+      --gray-200: #C4C8D4;
+      --gray-300: #A8ADBB;
+      --gray-400: #8B91A1;
+      --gray-500: #71767F;
+      --gray-600: #585C64;
+      --gray-700: #3F4249;
+      --gray-800: #2C3039;
+      --gray-900: #15171C;
+    
+      /* 颜色系统 - 基础色 */
+      --white: #FFFFFF;
+      --black: #000000;
+      
+      /* 语义颜色 */
+      --background-light: var(--gray-50);
+      --background-dark: var(--gray-800);
+      --text-primary: var(--gray-800);
+      --text-secondary: var(--gray-500);
+      --text-disabled: var(--gray-300);
+      --border-color: var(--gray-100);
+    
+      /* 间距系统 */
+      --spacing-0: 0;
+      --spacing-1: 4px;
+      --spacing-2: 8px;
+      --spacing-3: 12px;
+      --spacing-4: 16px;
+      --spacing-5: 20px;
+      --spacing-6: 24px;
+      --spacing-8: 32px;
+      --spacing-10: 40px;
+      --spacing-12: 48px;
+      --spacing-16: 64px;
+      --spacing-20: 80px;
+      --spacing-24: 96px;
+    
+      /* 边框圆角 */
+      --radius-none: 0;
+      --radius-sm: 2px;
+      --radius-md: 4px;
+      --radius-lg: 8px;
+      --radius-xl: 12px;
+      --radius-2xl: 16px;
+      --radius-full: 9999px;
+    
+      /* 字体系统 */
+      --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+      
+      /* 字体大小 */
+      --font-size-xs: 12px;
+      --font-size-sm: 14px;
+      --font-size-md: 16px;
+      --font-size-lg: 18px;
+      --font-size-xl: 20px;
+      --font-size-2xl: 24px;
+      --font-size-3xl: 30px;
+      --font-size-4xl: 36px;
+      --font-size-5xl: 48px;
+    
+      /* 字体粗细 */
+      --font-weight-light: 300;
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+    
+      /* 阴影 */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+      --shadow-none: none;
+    }
+
+    /* 全局样式 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family-sans);
+      background-color: var(--background-light);
+      color: var(--text-primary);
+    }
+
+    /* 主布局 */
+    .gp-dashboard {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* 侧边栏样式 */
+    .gp-sidebar {
+      width: 240px;
+      background-color: var(--white);
+      border-right: 1px solid var(--gray-100);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      z-index: 10;
+    }
+
+    .gp-sidebar-header {
+      padding: var(--spacing-4);
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .gp-logo {
+      height: 40px;
+      width: auto;
+    }
+
+    .gp-logo-placeholder {
+      height: 40px;
+      width: 140px;
+      background-color: var(--primary-400);
+      border-radius: var(--radius-md);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font-weight-bold);
+    }
+
+    .gp-nav {
+      flex: 1;
+      padding: var(--spacing-4) 0;
+      overflow-y: auto;
+    }
+
+    .gp-nav-list {
+      list-style: none;
+    }
+
+    .gp-nav-item {
+      margin-bottom: var(--spacing-1);
+    }
+
+    .gp-nav-item a {
+      display: flex;
+      align-items: center;
+      padding: var(--spacing-3) var(--spacing-4);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+      border-left: 3px solid transparent;
+    }
+
+    .gp-nav-item a:hover {
+      background-color: var(--primary-50);
+      color: var(--primary-600);
+    }
+
+    .gp-nav-item.active a {
+      color: var(--primary-600);
+      background-color: var(--primary-50);
+      border-left: 3px solid var(--primary-600);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .gp-icon {
+      margin-right: var(--spacing-3);
+      font-size: var(--font-size-lg);
+    }
+
+    .gp-sidebar-footer {
+      padding: var(--spacing-4);
+      border-top: 1px solid var(--gray-100);
+    }
+
+    .gp-user-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .gp-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-right: var(--spacing-2);
+      background-color: var(--primary-300);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .gp-username {
+      font-weight: var(--font-weight-medium);
+    }
+
+    /* 主内容区样式 */
+    .gp-main {
+      flex: 1;
+      margin-left: 240px;
+      padding: var(--spacing-6);
+      background-color: var(--background-light);
+    }
+
+    /* 头部样式 */
+    .gp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-6);
+    }
+
+    .gp-page-title {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--text-primary);
+    }
+
+    .gp-header-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .gp-search-box {
+      position: relative;
+      margin-right: var(--spacing-4);
+    }
+
+    .gp-search-input {
+      padding: var(--spacing-2) var(--spacing-3);
+      padding-right: var(--spacing-8);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-sm);
+      width: 240px;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .gp-search-input:focus {
+      outline: none;
+      border-color: var(--primary-400);
+      box-shadow: 0 0 0 3px var(--primary-100);
+    }
+
+    .gp-search-button {
+      position: absolute;
+      right: var(--spacing-2);
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: var(--font-size-md);
+    }
+
+    .gp-action-buttons {
+      display: flex;
+      gap: var(--spacing-3);
+    }
+
+    /* 按钮样式 */
+    .gp-button {
+      padding: var(--spacing-2) var(--spacing-4);
+      border-radius: var(--radius-md);
+      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-sm);
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      border: none;
+    }
+
+    .gp-button-primary {
+      background-color: var(--primary-600);
+      color: var(--white);
+    }
+
+    .gp-button-primary:hover {
+      background-color: var(--primary-700);
+    }
+
+    .gp-button-secondary {
+      background-color: var(--white);
+      color: var(--primary-600);
+      border: 1px solid var(--primary-600);
+    }
+
+    .gp-button-secondary:hover {
+      background-color: var(--primary-50);
+    }
+
+    .gp-button-small {
+      padding: var(--spacing-1) var(--spacing-3);
+      font-size: var(--font-size-xs);
+    }
+
+    .gp-button-icon {
+      padding: var(--spacing-1);
+      font-size: var(--font-size-md);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: var(--gray-600);
+    }
+
+    .gp-button-icon:hover {
+      color: var(--primary-600);
+      background-color: var(--gray-100);
+    }
+
+    .gp-button-page {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+      background-color: var(--white);
+      border: 1px solid var(--gray-200);
+    }
+
+    .gp-button-page.active {
+      background-color: var(--primary-600);
+      color: var(--white);
+      border-color: var(--primary-600);
+    }
+
+    /* 内容区域样式 */
+    .gp-content {
+      background-color: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: var(--spacing-6);
+    }
+
+    /* 卡片样式 */
+    .gp-card {
+      background-color: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      margin-bottom: var(--spacing-6);
+      overflow: hidden;
+    }
+
+    .gp-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-4) var(--spacing-6);
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .gp-card-title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-primary);
+    }
+
+    .gp-card-actions {
+      display: flex;
+      gap: var(--spacing-2);
+    }
+
+    .gp-card-content {
+      padding: var(--spacing-6);
+    }
+
+    /* 仪表盘网格 */
+    .gp-dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--spacing-6);
+    }
+
+    /* 统计项样式 */
+    .gp-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-4);
+    }
+
+    .gp-stat-item {
+      padding: var(--spacing-4);
+      background-color: var(--gray-50);
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+
+    .gp-stat-value {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--primary-600);
+      margin-bottom: var(--spacing-1);
+    }
+
+    .gp-stat-label {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+    }
+
+    /* 实验列表 */
+    .gp-experiment-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-3);
+    }
+
+    .gp-experiment-item {
+      padding: var(--spacing-4);
+      border-radius: var(--radius-md);
+      border-left: 4px solid transparent;
+    }
+
+    .gp-experiment-item.gp-success {
+      background-color: var(--success-50);
+      border-left-color: var(--success-500);
+    }
+
+    .gp-experiment-item.gp-neutral {
+      background-color: var(--gray-50);
+      border-left-color: var(--gray-400);
+    }
+
+    .gp-experiment-item.gp-danger {
+      background-color: var(--danger-50);
+      border-left-color: var(--danger-500);
+    }
+
+    .gp-experiment-title {
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--spacing-1);
+    }
+
+    .gp-experiment-metric {
+      font-size: var(--font-size-sm);
+      margin-bottom: var(--spacing-1);
+    }
+
+    .gp-experiment-status {
+      font-size: var(--font-size-xs);
+      color: var(--text-secondary);
+    }
+
+    /* 活动列表 */
+    .gp-activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-4);
+    }
+
+    .gp-activity-item {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .gp-activity-avatar {
+      margin-right: var(--spacing-3);
+    }
+
+    .gp-activity-details {
+      flex: 1;
+    }
+
+    .gp-activity-user {
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--spacing-1);
+    }
+
+    .gp-activity-action {
+      font-size: var(--font-size-sm);
+      margin-bottom: var(--spacing-1);
+    }
+
+    .gp-activity-time {
+      font-size: var(--font-size-xs);
+      color: var(--text-secondary);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .gp-sidebar {
+        width: 60px;
+      }
+      
+      .gp-nav-text {
+        display: none;
+      }
+      
+      .gp-main {
+        margin-left: 60px;
+      }
+      
+      .gp-dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .gp-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .gp-header-left, .gp-header-right {
+        width: 100%;
+        margin-bottom: var(--spacing-3);
+      }
+      
+      .gp-search-box {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: var(--spacing-3);
+      }
+      
+      .gp-search-input {
+        width: 100%;
+      }
+      
+      .gp-action-buttons {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* 欢迎消息 */
+    .welcome-banner {
+      padding: var(--spacing-6);
+      background-color: var(--primary-50);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--spacing-6);
+      border-left: 4px solid var(--primary-600);
+    }
+
+    .welcome-title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--primary-700);
+      margin-bottom: var(--spacing-2);
+    }
+
+    .welcome-message {
+      font-size: var(--font-size-md);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-4);
+    }
+  </style>
+</head>
+<body>
+  <div class="gp-dashboard">
+    <!-- 左侧导航 -->
+    <aside class="gp-sidebar">
+      <div class="gp-sidebar-header">
+        <div class="gp-logo-placeholder">GrowPulse</div>
+      </div>
+      
+      <nav class="gp-nav">
+        <ul class="gp-nav-list">
+          <li class="gp-nav-item active" data-tab="overview">
+            <a href="#overview">
+              <span class="gp-icon">📊</span>
+              <span class="gp-nav-text">概览</span>
+            </a>
+          </li>
+          <li class="gp-nav-item" data-tab="experiments">
+            <a href="#experiments">
+              <span class="gp-icon">🧪</span>
+              <span class="gp-nav-text">实验</span>
+            </a>
+          </li>
+          <li class="gp-nav-item" data-tab="features">
+            <a href="#features">
+              <span class="gp-icon">🚩</span>
+              <span class="gp-nav-text">特性标志</span>
+            </a>
+          </li>
+          <li class="gp-nav-item" data-tab="metrics">
+            <a href="#metrics">
+              <span class="gp-icon">📈</span>
+              <span class="gp-nav-text">指标</span>
+            </a>
+          </li>
+          <li class="gp-nav-item" data-tab="team">
+            <a href="#team">
+              <span class="gp-icon">👥</span>
+              <span class="gp-nav-text">团队</span>
+            </a>
+          </li>
+          <li class="gp-nav-item" data-tab="settings">
+            <a href="#settings">
+              <span class="gp-icon">⚙️</span>
+              <span class="gp-nav-text">设置</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="gp-sidebar-footer">
+        <div class="gp-user-info">
+          <div class="gp-avatar">张</div>
+          <span class="gp-username">张三</span>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- 主内容区 -->
+    <main class="gp-main">
+      <!-- 顶部操作栏 -->
+      <header class="gp-header">
+        <div class="gp-header-left">
+          <h1 class="gp-page-title" id="page-title">仪表盘概览</h1>
+        </div>
+        
+        <div class="gp-header-right">
+          <div class="gp-search-box">
+            <input type="text" placeholder="搜索..." class="gp-search-input" />
+            <button class="gp-search-button">🔍</button>
+          </div>
+          
+          <div class="gp-action-buttons">
+            <button class="gp-button gp-button-secondary">导入</button>
+            <button class="gp-button gp-button-primary" id="primary-action">+ 新建</button>
+          </div>
+        </div>
+      </header>
+      
+      <!-- 内容区域 -->
+      <div class="gp-content">
+        <!-- 概览标签页 -->
+        <div class="tab-content active" id="overview-tab">
+          <div class="welcome-banner">
+            <h2 class="welcome-title">欢迎使用GrowPulse！</h2>
+            <p class="welcome-message">这是基于MCP方法设计的界面原型，融合了GrowthBook的布局结构和GrowPulse的品牌元素。通过点击左侧导航可以查看不同的功能页面。</p>
+            <button class="gp-button gp-button-primary">查看使用指南</button>
+          </div>
+          
+          <div class="gp-dashboard-grid">
+            <!-- 状态概览卡片 -->
+            <div class="gp-card">
+              <div class="gp-card-header">
+                <h2 class="gp-card-title">状态概览</h2>
+              </div>
+              <div class="gp-card-content">
+                <div class="gp-stats-grid">
+                  <div class="gp-stat-item">
+                    <div class="gp-stat-value">12</div>
+                    <div class="gp-stat-label">运行中的实验</div>
+                  </div>
+                  <div class="gp-stat-item">
+                    <div class="gp-stat-value">45</div>
+                    <div class="gp-stat-label">活跃特性标志</div>
+                  </div>
+                  <div class="gp-stat-item">
+                    <div class="gp-stat-value">8</div>
+                    <div class="gp-stat-label">团队成员</div>
+                  </div>
+                  <div class="gp-stat-item">
+                    <div class="gp-stat-value">24</div>
+                    <div class="gp-stat-label">定义指标</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 实验结果卡片 -->
+            <div class="gp-card">
+              <div class="gp-card-header">
+                <h2 class="gp-card-title">实验结果</h2>
+                <div class="gp-card-actions">
+                  <button class="gp-button gp-button-small">查看全部</button>
+                </div>
+              </div>
+              <div class="gp-card-content">
+                <div class="gp-experiment-list">
+                  <div class="gp-experiment-item gp-success">
+                    <div class="gp-experiment-title">注册页优化</div>
+                    <div class="gp-experiment-metric">+15.8% 转化率</div>
+                    <div class="gp-experiment-status">显著提升</div>
+                  </div>
+                  <div class="gp-experiment-item gp-neutral">
+                    <div class="gp-experiment-title">新功能引导</div>
+                    <div class="gp-experiment-metric">+2.1% 使用率</div>
+                    <div class="gp-experiment-status">无显著差异</div>
+                  </div>
+                  <div class="gp-experiment-item gp-danger">
+                    <div class="gp-experiment-title">定价页调整</div>
+                    <div class="gp-experiment-metric">-8.3% 转化率</div>
+                    <div class="gp-experiment-status">负面影响</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 团队活动卡片 -->
+            <div class="gp-card">
+              <div class="gp-card-header">
+                <h2 class="gp-card-title">最近活动</h2>
+              </div>
+              <div class="gp-card-content">
+                <div class="gp-activity-list">
+                  <div class="gp-activity-item">
+                    <div class="gp-avatar">李</div>
+                    <div class="gp-activity-details">
+                      <div class="gp-activity-user">李四</div>
+                      <div class="gp-activity-action">创建了新实验 "移动端导航优化"</div>
+                      <div class="gp-activity-time">2小时前</div>
+                    </div>
+                  </div>
+                  <div class="gp-activity-item">
+                    <div class="gp-avatar">王</div>
+                    <div class="gp-activity-details">
+                      <div class="gp-activity-user">王五</div>
+                      <div class="gp-activity-action">更新了特性标志 "新支付流程"</div>
+                      <div class="gp-activity-time">昨天</div>
+                    </div>
+                  </div>
+                  <div class="gp-activity-item">
+                    <div class="gp-avatar">赵</div>
+                    <div class="gp-activity-details">
+                      <div class="gp-activity-user">赵六</div>
+                      <div class="gp-activity-action">添加了新指标 "用户停留时间"</div>
+                      <div class="gp-activity-time">2天前</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 实验标签页 -->
+        <div class="tab-content" id="experiments-tab">
+          <div class="gp-filters">
+            <div class="gp-filter-group">
+              <label class="gp-filter-label">状态:</label>
+              <select class="gp-select">
+                <option>全部</option>
+                <option>进行中</option>
+                <option>已结束</option>
+                <option>草稿</option>
+              </select>
+            </div>
+            <div class="gp-filter-group">
+              <label class="gp-filter-label">标签:</label>
+              <select class="gp-select">
+                <option>全部</option>
+                <option>前端</option>
+                <option>转化率</option>
+                <option>性能</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="gp-table-container">
+            <table class="gp-table">
+              <thead>
+                <tr>
+                  <th>实验名称</th>
+                  <th>状态</th>
+                  <th>标签</th>
+                  <th>开始日期</th>
+                  <th>结果</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="gp-experiment-name">主页重新设计</div>
+                    <div class="gp-experiment-description">测试新的首页设计对转化的影响</div>
+                  </td>
+                  <td><span class="gp-badge gp-badge-success">进行中</span></td>
+                  <td><span class="gp-tag">前端</span> <span class="gp-tag">转化率</span></td>
+                  <td>2023-03-15</td>
+                  <td>
+                    <div class="gp-result-indicator gp-positive">+12.4%</div>
+                  </td>
+                  <td>
+                    <div class="gp-actions">
+                      <button class="gp-button gp-button-icon">📊</button>
+                      <button class="gp-button gp-button-icon">✏️</button>
+                      <button class="gp-button gp-button-icon">⋮</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="gp-experiment-name">新用户引导流程</div>
+                    <div class="gp-experiment-description">测试简化的新用户引导对激活率的影响</div>
+                  </td>
+                  <td><span class="gp-badge gp-badge-success">进行中</span></td>
+                  <td><span class="gp-tag">激活</span> <span class="gp-tag">新用户</span></td>
+                  <td>2023-03-10</td>
+                  <td>
+                    <div class="gp-result-indicator gp-neutral">+1.8%</div>
+                  </td>
+                  <td>
+                    <div class="gp-actions">
+                      <button class="gp-button gp-button-icon">📊</button>
+                      <button class="gp-button gp-button-icon">✏️</button>
+                      <button class="gp-button gp-button-icon">⋮</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="gp-experiment-name">搜索结果排序优化</div>
+                    <div class="gp-experiment-description">测试新的搜索算法对用户点击率的影响</div>
+                  </td>
+                  <td><span class="gp-badge gp-badge-neutral">已完成</span></td>
+                  <td><span class="gp-tag">搜索</span> <span class="gp-tag">点击率</span></td>
+                  <td>2023-02-20</td>
+                  <td>
+                    <div class="gp-result-indicator gp-positive">+8.7%</div>
+                  </td>
+                  <td>
+                    <div class="gp-actions">
+                      <button class="gp-button gp-button-icon">📊</button>
+                      <button class="gp-button gp-button-icon">✏️</button>
+                      <button class="gp-button gp-button-icon">⋮</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="gp-pagination">
+            <button class="gp-button gp-button-icon">◀</button>
+            <div class="gp-page-numbers">
+              <button class="gp-button gp-button-page active">1</button>
+              <button class="gp-button gp-button-page">2</button>
+              <button class="gp-button gp-button-page">3</button>
+            </div>
+            <button class="gp-button gp-button-icon">▶</button>
+          </div>
+        </div>
+        
+        <!-- 特性标志标签页 -->
+        <div class="tab-content" id="features-tab">
+          <div class="gp-card">
+            <div class="gp-card-header">
+              <h2 class="gp-card-title">激活的特性标志</h2>
+              <div class="gp-card-actions">
+                <button class="gp-button gp-button-small">导出</button>
+              </div>
+            </div>
+            
+            <div class="gp-feature-list">
+              <div class="gp-feature-item">
+                <div class="gp-feature-header">
+                  <div class="gp-feature-name">新支付流程</div>
+                  <div class="gp-feature-controls">
+                    <div class="gp-toggle">
+                      <input type="checkbox" id="feature1" class="gp-toggle-input" checked />
+                      <label for="feature1" class="gp-toggle-label"></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="gp-feature-details">
+                  <div class="gp-feature-description">新的简化支付流程，减少了结账步骤</div>
+                  <div class="gp-feature-meta">
+                    <span class="gp-tag">已发布</span>
+                    <span class="gp-meta-info">100% 用户</span>
+                    <span class="gp-meta-info">更新于 2天前</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="gp-feature-item">
+                <div class="gp-feature-header">
+                  <div class="gp-feature-name">黑暗模式</div>
+                  <div class="gp-feature-controls">
+                    <div class="gp-toggle">
+                      <input type="checkbox" id="feature2" class="gp-toggle-input" checked />
+                      <label for="feature2" class="gp-toggle-label"></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="gp-feature-details">
+                  <div class="gp-feature-description">为应用提供深色主题选项</div>
+                  <div class="gp-feature-meta">
+                    <span class="gp-tag">测试中</span>
+                    <span class="gp-meta-info">50% 用户</span>
+                    <span class="gp-meta-info">更新于 1周前</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="gp-feature-item">
+                <div class="gp-feature-header">
+                  <div class="gp-feature-name">AI推荐</div>
+                  <div class="gp-feature-controls">
+                    <div class="gp-toggle">
+                      <input type="checkbox" id="feature3" class="gp-toggle-input" />
+                      <label for="feature3" class="gp-toggle-label"></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="gp-feature-details">
+                  <div class="gp-feature-description">基于用户行为的智能推荐系统</div>
+                  <div class="gp-feature-meta">
+                    <span class="gp-tag">开发中</span>
+                    <span class="gp-meta-info">内部用户</span>
+                    <span class="gp-meta-info">更新于 3天前</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 其他标签页 (空白) -->
+        <div class="tab-content" id="metrics-tab">
+          <div class="welcome-banner">
+            <h2 class="welcome-title">指标管理</h2>
+            <p class="welcome-message">这里是指标管理页面，您可以创建和管理指标，跟踪实验和特性标志的效果。</p>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="team-tab">
+          <div class="welcome-banner">
+            <h2 class="welcome-title">团队管理</h2>
+            <p class="welcome-message">这里是团队管理页面，您可以管理团队成员，设置权限，以及查看活动日志。</p>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="settings-tab">
+          <div class="welcome-banner">
+            <h2 class="welcome-title">系统设置</h2>
+            <p class="welcome-message">这里是系统设置页面，您可以配置系统参数，管理集成，以及自定义应用行为。</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // 简单的标签页切换
+    document.querySelectorAll('.gp-nav-item').forEach(item => {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        const tabId = this.getAttribute('data-tab');
+        
+        // 更新导航项的激活状态
+        document.querySelectorAll('.gp-nav-item').forEach(navItem => {
+          navItem.classList.remove('active');
+        });
+        this.classList.add('active');
+        
+        // 更新标签页的显示
+        document.querySelectorAll('.tab-content').forEach(tab => {
+          tab.classList.remove('active');
+        });
+        document.getElementById(`${tabId}-tab`).classList.add('active');
+        
+        // 更新页面标题
+        const pageTitles = {
+          'overview': '仪表盘概览',
+          'experiments': '实验管理',
+          'features': '特性标志',
+          'metrics': '指标管理',
+          'team': '团队管理',
+          'settings': '系统设置'
+        };
+        document.getElementById('page-title').textContent = pageTitles[tabId];
+        
+        // 更新主按钮文本
+        const buttonTexts = {
+          'overview': '+ 新建',
+          'experiments': '+ 新建实验',
+          'features': '+ 新建特性',
+          'metrics': '+ 新建指标',
+          'team': '+ 邀请成员',
+          'settings': '+ 新建'
+        };
+        document.getElementById('primary-action').textContent = buttonTexts[tabId];
+      });
+    });
+  </script>
+</body>
+</html> 

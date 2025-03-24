@@ -1,0 +1,24 @@
+{
+  // This file is not used in compilation. It is here just for a nice editor experience.
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "node"
+  },
+  "exclude": ["./scripts/*.ts"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
+  "mdx": {
+    // Enable strict type checking in MDX files.
+    "checkMdx": true
+  }
+}
