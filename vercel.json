@@ -9,9 +9,9 @@
       "NODE_ENV": "production"
     }
   },
-  "buildCommand": "cd packages/front-end && yarn install && yarn build",
+  "buildCommand": "yarn build",
   "outputDirectory": "packages/front-end/.next",
-  "devCommand": "cd packages/front-end && yarn dev",
+  "devCommand": "yarn dev",
   "env": {
     "SUPABASE_URL": "https://qsptolcekvocotsetrnn.supabase.co",
     "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFzcHRvbGNla3ZvY290c2V0cm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4NTc0NzksImV4cCI6MjA1ODQzMzQ3OX0.h_KplOiZ6HIKgcQD_TI0cPchRDCtFmRg7js0QjokweE",
